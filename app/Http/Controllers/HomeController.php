@@ -13,18 +13,35 @@ class HomeController extends Controller
 {
     public function index(){
         // $product = Product::limit(4)->get();
-        // $menu = FoodMenu::with('products')->limit(1)->get();
-        // dd($menu);
-        $products = product::all();
-        $menus = foodmenu::all();
+        // // dd($menu);
+        // $contents = [];
+        //     foreach($menus as $menu){
+            //     $menu = $menu->products()->with('status' , 'Active')->limit(4);
+            // }
+            // dd($contents);        
+            // $products = product::all();
+            // $menus = foodmenu::with(['products' => function ($query) {
+                //     $query->latest()->limit(4);
+                // }])->get();
+                
+                // $products = product::all();
+                // dd($productslimit);
+                $menus = FoodMenu::all();
+                foreach($menus as $menu):
+                    $productslimit[] = $menu->products()->take(4)->get();
+                endforeach;    
+        $products = product::with('foodmenu')->get();
         $chefs = chef::all();
-        return view('layouts.main.index' , compact('products','menus','chefs'));
+        return view('layouts.main.index' , compact('products','menus','chefs', 'productslimit'));
     }
     //Menu Method to send the Menu and its products Data to the View
     public function menu(){
         $menus=foodmenu::all();
+        foreach($menus as $menu):
+            $productslimit[] = $menu->products()->take(4)->get();
+        endforeach; 
         $products = Product::with('foodmenu')->get();
-        return view('layouts.main.menu' , compact('menus','products'));
+        return view('layouts.main.menu' , compact('menus','products','productslimit'));
     }
     //Gallary Method to send the Products to the View
     public function gallary(){
