@@ -5,6 +5,7 @@ use App\Http\Controllers\FoodMenusController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\chefController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\cpanelController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,10 +39,10 @@ use Illuminate\Support\Facades\Route;
 //     });
 
 // });
+
+// Here To Make Only the admin users who can enter this group of URL's
 route::middleware('auth' , 'is_admin')->group(function(){
-    Route::get('cpanel' , function () {
-        return view('layouts/admin/index');
-    });
+    Route::get('cpanel' , "\App\Http\Controllers\cpanelController@index")->name('cpanel');
     Route::resource('users' , UsersController::class);
     Route::Resource('menus' , FoodMenusController::class);
     Route::Resource('chefs' , chefController::class);
@@ -49,9 +50,12 @@ route::middleware('auth' , 'is_admin')->group(function(){
 });
 require __DIR__.'/auth.php';
 
+//This Route is for the Contact Form in the footer of all pages 
 Route::post('contact', ['url' => 'contact', 'uses' =>
     '\App\Http\Controllers\HomeController@sendcontact'])->name('contact.send');
 
+
+// Here is the Route of the WebSite    
 Route::get('/' , "\App\Http\Controllers\HomeController@index")->name('index');
 Route::get('/menu' , "\App\Http\Controllers\HomeController@menu")->name('menu');
 Route::get('/gallary' , "\App\Http\Controllers\HomeController@gallary")->name('gallary');
