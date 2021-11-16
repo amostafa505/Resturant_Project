@@ -71,9 +71,9 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="social">
                     <ul>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="https://www.facebook.com/ahmed.mostafa.1671/"><i class="fa fa-facebook"></i></a></li>
+                        {{-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li> --}}
                     </ul>
                 </div>
                 <p>&copy; 2016 Touché. All rights reserved. Designed by <a href="" rel="nofollow">Me</a></p>
