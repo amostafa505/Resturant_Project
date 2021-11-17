@@ -4,8 +4,9 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\FoodMenusController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\chefController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\cpanelController;
+// use App\Http\Controllers\contactController;
+// use App\Http\Controllers\HomeController;
+// use App\Http\Controllers\cpanelController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -52,7 +53,7 @@ require __DIR__.'/auth.php';
 
 //This Route is for the Contact Form in the footer of all pages 
 Route::post('contact', ['url' => 'contact', 'uses' =>
-    '\App\Http\Controllers\HomeController@sendcontact'])->name('contact.send');
+    '\App\Http\Controllers\contactController@sendcontact'])->name('contact.send');
 
 
 // Here is the Route of the WebSite    

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\events\contactformEvent;
 use Illuminate\Http\Request;
 use App\models\FoodMenu;
 use App\models\Product;
 use App\Models\chef;
-use App\Http\Requests\ContactFormRequest;
+
 
 class HomeController extends Controller
 {
@@ -26,13 +25,13 @@ class HomeController extends Controller
                 
                 // $products = product::all();
                 // dd($productslimit);
-                $menus = FoodMenu::all();
-                foreach($menus as $menu):
-                    $productslimit[] = $menu->products()->take(4)->get();
-                endforeach;    
-        $products = product::with('foodmenu')->get();
+                // foreach($menus as $menu):
+                //     $productslimit[] = $menu->products()->take(4)->get();
+                // endforeach;    
+        $menus = FoodMenu::with('products')->get();
+        $products_data = product::with('foodmenu')->get();
         $chefs = chef::all();
-        return view('layouts.main.index' , compact('products','menus','chefs', 'productslimit'));
+        return view('layouts.main.index' , compact('menus','chefs', 'products_data'));
     }
     //Menu Method to send the Menu and its products Data to the View
     public function menu(){
@@ -61,13 +60,6 @@ class HomeController extends Controller
         return view('layouts.main.contact');
     }
 
-    public function sendcontact(ContactFormRequest $request)
-    {
-        $validated = $request->validated();
-        
-        event(new contactformEvent($validated));
-        toastr()->success('Done Send Your Contact To the Admin');
-        return back();
-    }
+    
 
 }

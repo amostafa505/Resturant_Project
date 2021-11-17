@@ -19,4 +19,5 @@ class Product extends Model
     protected $fillable = [
         'name', 'price', 'qty','menu_id','img' ,'status','description'
     ];
+
 }

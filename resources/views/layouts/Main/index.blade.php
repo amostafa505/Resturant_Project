@@ -44,52 +44,53 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed.</p>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            @foreach($menus as $menu)
-            <div class="col-xs-12 col-sm-6">
-                <div class="menu-section">
-                    <h2 class="menu-section-title">{{$menu->menu_name}}</h2>
-                    <hr>
-                    @foreach($productslimit as $key=>$value)
-                        @foreach ($value as $product)
-                            @if($product->menu_id === $menu->id)
-                                <div class="menu-item">
-                                    <div class="menu-item-name"> {{$product->name}} </div>
-                                    <div class="menu-item-price"> {{$product->price}} </div>
-                                    <div class="menu-item-description"> {{$product->description}} </div>
-                                </div>
-                            @endif
-                            
+        {{-- <div class="container">
+            <div class="row">
+                @foreach($menus as $menu)
+                <div class="col-xs-12 col-sm-6">
+                    <div class="menu-section">
+                        <h2 class="menu-section-title">{{$menu->menu_name}}</h2>
+                        <hr>
+                        @foreach($productslimit as $key=>$value)
+                            @foreach ($value as $product)
+                                @if($product->menu_id === $menu->id)
+                                    <div class="menu-item">
+                                        <div class="menu-item-name"> {{$product->name}} </div>
+                                        <div class="menu-item-price"> {{$product->price}} </div>
+                                        <div class="menu-item-description"> {{$product->description}} </div>
+                                    </div>
+                                @endif
+                                
+                            @endforeach
                         @endforeach
-                    @endforeach
+                    </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
+        </div> --}}
+        <div class="container">
+            <div class="row">
+                @foreach($menus as $menu)
+                <div class="col-xs-12 col-sm-6">
+                    <div class="menu-section">
+                        <h2 class="menu-section-title">{{$menu->menu_name}}</h2>
+                        <hr>
+                        @foreach($menu->products as $product)
+                        @if($product->foodmenu->menu_name === $menu->menu_name)
+                            <div class="menu-item">
+                                <div class="menu-item-name"> {{$product->name}} </div>
+                                <div class="menu-item-price"> {{$product->price}} </div>
+                                <div class="menu-item-description"> {{$product->description}} </div>
+                            </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
-    {{-- <div class="container">
-        <div class="row">
-            @foreach($menus as $menu)
-            <div class="col-xs-12 col-sm-6">
-                <div class="menu-section">
-                    <h2 class="menu-section-title">{{$menu->menu_name}}</h2>
-                    <hr>
-                    @foreach($contents as $product)
-                    @if($product->foodmenu->menu_name === $menu->menu_name)
-                        <div class="menu-item">
-                            <div class="menu-item-name"> {{$product->name}} </div>
-                            <div class="menu-item-price"> {{$product->price}} </div>
-                            <div class="menu-item-description"> {{$product->description}} </div>
-                        </div>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-            @endforeach
-        </div>
-        </div> --}}
+
     </div>
 </div>
 
@@ -120,7 +121,7 @@
             </div>
             <div class="row">
                 <div class="portfolio-items">
-                    @foreach($products as $product)
+                    @foreach($products_data as $product)
                         <div class="col-sm-6 col-md-4 col-lg-4 {{$product->foodmenu->menu_name}}">
                             <div class="portfolio-item">
                                 <div class="hover-bg">

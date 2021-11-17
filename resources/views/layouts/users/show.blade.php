@@ -58,39 +58,41 @@
 
                 </tbody>
             </table>
-            </div>
-            <!-- /.card-body -->
         </div>
-        <!-- /.card -->
+        <!-- /.card-body -->
     </div>
+    <!-- /.card -->
+</div>
+
+</div>
 </div>
 @endsection
 
 @section('jsScript')
 
-    <script>
-        $(".deleteitem").on("submit" , function(e){
-            e.preventDefault();
-            var action = $(this).attr("action");
-            var data = $(this).serialize();
-            $row = $(this);
-            $.ajax({
-                "url":action,
-                "type":"DELETE",
-                "data":data,
-                success:function(data){
-                    if(data.status === 'success'){
-                        toastr.success(data.Message);
-                        $($row).parents('tr').remove();
-                    };
-                },
-                error: function( data ){
-                if ( data.status === 422 ) {
-                toastr.error('Cannot delete the category');
-                    }
+<script>
+    $(".deleteitem").on("submit" , function(e){
+        e.preventDefault();
+        var action = $(this).attr("action");
+        var data = $(this).serialize();
+        $row = $(this);
+        $.ajax({
+            "url":action,
+            "type":"DELETE",
+            "data":data,
+            success:function(data){
+                if(data.status === 'success'){
+                    toastr.success(data.Message);
+                    $($row).parents('tr').remove();
+                };
+            },
+            error: function( data ){
+            if ( data.status === 422 ) {
+            toastr.error('Cannot delete This Product');
                 }
-            });
+            }
         });
+    });
 
-    </script>
+</script>
 @endsection    

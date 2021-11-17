@@ -104,7 +104,6 @@ class UsersController extends Controller
     {
         User::destroy($user->id);
         $this->deleteimg($user);
-        return redirect('users'); 
         return response()->json(["status"=>"success" , "Message"=>"Deleted Succussfully"]);
     }
 

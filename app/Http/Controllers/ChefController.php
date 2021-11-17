@@ -61,8 +61,8 @@ class ChefController extends Controller
      */
     public function edit($id)
     {
-        $chefs = chef::findOrFail($id);
-        return view('layouts/chefs/edit', compact('chefs'));
+        $chef = chef::findOrFail($id);
+        return view('layouts/chefs/edit', compact('chef'));
     }
 
     /**
@@ -79,7 +79,7 @@ class ChefController extends Controller
         chef::find($request->id)->update($validated);
         toastr()->success('Done Update This Chef');
         response()->json(["status" =>"success" , "Message"=>"Updated Succussfully"]);
-        return redirect()->route('Chef.index');
+        return redirect()->route('chefs.index');
     }
 
     /**
