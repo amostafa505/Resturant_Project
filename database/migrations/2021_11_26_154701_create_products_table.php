@@ -18,12 +18,12 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->float('price');
             $table->integer('qty');
-            $table->string('img');
             $table->unsignedBigInteger('menu_id');
             $table->enum('status' , ['pending' , 'active' , 'notactive'])->default('pending');
             $table->foreign('menu_id')
             ->references('id')->on('foodmenus')
             ->onDelete('cascade');
+            $table->integer('discount')->nullable();
             $table->text('description');
             $table->timestamps();
         });

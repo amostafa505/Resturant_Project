@@ -57,18 +57,18 @@
                     <input type="text" name="qty" class="form-control" id="cat" >
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlFile1">Image</label>
-                    <input type="file" name="img" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-                <div class="input-group mb-3 justify-content-between">
-                    <div class="form-check">
+                  <label for="cat">Item Discount %</label>
+                  <input type="text" name="discount" class="form-control" id="cat" >
+              </div>
+                {{-- <div class="input-group mb-3 justify-content-between">
+                  <div class="form-check">
                         <input class="form-check-input" name="status" value="pending" type="radio" checked>
                         <label class="form-check-label" for="exampleRadios1">
                         Pending
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="status" value="active" type="radio" >
+                      <input class="form-check-input" name="status" value="active" type="radio" >
                         <label class="form-check-label" for="exampleRadios2">
                         Active
                         </label>
@@ -76,28 +76,40 @@
                     <div class="form-check">
                         <input class="form-check-input" name="status" value="notactive" type="radio">
                         <label class="form-check-label" for="exampleRadios3">
-                        Not-Active
+                          Not-Active
                         </label>
+                      </div>
+                    </div> --}}
+                    <div class="form-group">
+                      <label>Status</label>
+                      <select class="form-control" name="status">
+                        <option value="active">Active</option>
+                        <option value="notactive">Not-Active</option>
+                        <option value="pending">Pending</option>
+                      </select>
                     </div>
-                </div>
-                <div class="form-group">
-                  <label>Product Description</label>
-                  <textarea class="form-control" name="description" rows="3" placeholder="Enter The Product description here"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Select Menu</label>
-                    <select class="form-control" name="menu_id" id="exampleFormControlSelect1">
+                    <div class="form-group">
+                      <label>Product Description</label>
+                      <textarea class="form-control" name="description" rows="3" placeholder="Enter The Product description here"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Select Menu</label>
+                      <select class="form-control" name="menu_id" id="exampleFormControlSelect1">
                         @foreach($cat as $row)
                             <option value="{{$row->id}}">{{$row->menu_name}}</option>
                         @endforeach
                     </select>
                   </div>
-                <button type="submit" class="btn btn-success">
+                  <div class="form-group">
+                      <label for="exampleFormControlFile1">Image</label>
+                      <input type="file" name="image_id[]" multiple class="form-control-file" id="exampleFormControlFile1">
+                  </div>
+                  <button type="submit" class="btn btn-success">
                     <i class="bi bi-reply-all-fill"></i> Submit
                  </button>
-            </form>
+                </form>
             </div>
         </div>
     </div>
-</div>
+  </div>
 @endsection

@@ -55,11 +55,15 @@ class HomeController extends Controller
         return view('layouts.main.chefs' , compact('chefs'));
     }
 
-    //conact Method to show the View of the contact form
+    //contact Method to show the View of the contact form
     public function contact(){
         return view('layouts.main.contact');
     }
-
+    //conact Method to show the View of the contact form
+    public function productview($id){
+        $product = product::find($id);
+        return view('layouts.main.product' , compact('product'));
+    }
     
 
 }

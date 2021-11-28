@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-lg-5 text-center">
                     <div class="about-img">
-                        <img src="{{asset('images/users/' . $user->img)}}" width="400" height="400">
+                        <img @if($user->img) ? src="{{asset('images/users/'.$user->img)}}" @else src="{{asset('images/users/defaultUserProfile.png')}}" @endif width="400" height="400" class="rounded" alt="No Picture">
                     </div>
                 </div>
             </div>

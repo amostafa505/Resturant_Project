@@ -33,11 +33,11 @@
                     <div class="col-sm-6 col-md-4 col-lg-4 {{$product->foodmenu->menu_name}}">
                         <div class="portfolio-item">
                             <div class="hover-bg">
-                                <a href="{{asset('images/products/'. $product->img)}}" title="Dish Name" data-lightbox-gallery="gallery1">
+                                <a href="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" title="Dish Name" data-lightbox-gallery="gallery1">
                                     <div class="hover-text">
                                         <h4>{{$product->name}}</h4>
                                     </div>
-                                    <img src="{{asset('images/products/'. $product->img)}}" class="img-responsive" alt="Project Title"> </a>
+                                    <img src="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" class="img-responsive" alt="Project Title"> </a>
                             </div>
                         </div>
                     </div>

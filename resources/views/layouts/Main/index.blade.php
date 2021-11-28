@@ -77,11 +77,26 @@
                         <hr>
                         @foreach($menu->products as $product)
                         @if($product->foodmenu->menu_name === $menu->menu_name)
-                            <div class="menu-item">
-                                <div class="menu-item-name"> {{$product->name}} </div>
-                                <div class="menu-item-price"> {{$product->price}} </div>
-                                <div class="menu-item-description"> {{$product->description}} </div>
+                        <div class="menu-item row" >
+                            <div class="menu-item-image col-xs-3">
+                                <img src="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" class="" alt="">
                             </div>
+                            <div class="menu-item-text col-xs-7">
+                                <div class="menu-item-name">{{$product->name}}</div>
+                                @if($product->discount)<div class="menu-item-price"><strong>{{$product->price_discount}}</strong></div>
+                                @else <div class="menu-item-price">{{$product->price}}</div>@endif
+                                <div class="menu-item-description"> {{$product->description}} </div>
+                                @if($product->discount)<div class="menu-item-discount"><s>{{$product->price}}</s></div><br>
+                                <div class="menu-item-discount"><small>Disccount {{$product->discount}}%</small></div>
+                               @endif
+                                
+                            </div>    
+                            <div class="menu-item-links col-xs-2">
+                                <a href="{{Route('productpreview', $product->id)}}" class="btn btn-default">View</a>
+                                <a href="" class="btn btn-default" style="margin-top:5px">Add To Cart</a>
+                            </div>
+                            
+                        </div>
                             @endif
                         @endforeach
                     </div>
@@ -125,11 +140,11 @@
                         <div class="col-sm-6 col-md-4 col-lg-4 {{$product->foodmenu->menu_name}}">
                             <div class="portfolio-item">
                                 <div class="hover-bg">
-                                    <a href="{{asset('images/products/'. $product->img)}}" title="Dish Name" data-lightbox-gallery="gallery1">
+                                    <a href="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" title="{{$product->name}}" data-lightbox-gallery="gallery1">
                                         <div class="hover-text">
                                             <h4>{{$product->name}}</h4>
                                         </div>
-                                        <img src="{{asset('images/products/'. $product->img)}}" class="img-responsive" alt="Project Title"> </a>
+                                        <img src="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" class="img-responsive" alt="Project Title"> </a>
                                 </div>
                             </div>
                         </div>

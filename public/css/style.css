@@ -249,8 +249,9 @@ header .intro-text {
 	color: #fff;
 }
 #restaurant-menu img {
-	width: 300px;
-	box-shadow: 15px 0 #a7c44c;
+	width: 100px;
+	
+	/* box-shadow: 15px 0 #a7c44c; */
 }
 #restaurant-menu h3 {
 	padding: 10px 0;
@@ -283,10 +284,19 @@ header .intro-text {
 #restaurant-menu .menu-item-description {
 	font-style: italic;
 	font-size: 15px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 75%;
 }
 #restaurant-menu .menu-item-price {
 	float: right;
 	font-weight: 600;
+	color: #555;
+	margin-top: -26px;
+}
+#restaurant-menu .menu-item-discount {
+	float: right;
+	font-weight: 400;
 	color: #555;
 	margin-top: -26px;
 }

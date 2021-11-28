@@ -26,11 +26,13 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Price</th>
                     <th>Quantity</th>
-                    <th>description</th>
+                    <th>Price</th>
+                    <th>Discount by %</th>
+                    <th>Price After Discount</th>
+                    <th>Status</th>
                     <th>Category Name</th>
-                    <th>Image</th>
+                    {{-- <th>Image</th> --}}
                     <th scope="col">action</th>
                 </tr>
                 </thead>
@@ -39,8 +41,10 @@
                         <tr>
                             <th scope="row">{{$id++}}</th>
                             <td>{{$row->name}}</td>
-                            <td>{{$row->price}}</td>
                             <td>{{$row->qty}}</td>
+                            <td>{{$row->price}}</td>
+                            <td>{{$row->discount}}</td>
+                            <td>{{$row->price_discount}}</td>
                             <td class="@if ($row->status == "pending")
                                 bg-warning
                                 @elseif($row->status == "active")
@@ -50,10 +54,11 @@
                                 @endif btn btn-block rounded text-center ">{{$row->status}}
                             </td>
                             <td>{{$row->foodmenu->menu_name}}</td>
-                            <td><img src="{{asset('images/products/'.$row->img)}}" width="75" class="rounded"></td>
+                            {{-- <td><img src="{{asset('images/products/'.$row->img)}}" width="75" class="rounded"></td> --}}
                             <td>
                                 <div class="row">
-                                <a href="{{route('products.edit',$row->id)}}" class="btn btn-info">Edit <i class="bi bi-pencil-square"></i></a>
+                                <a href="{{route('products.show',$row->id)}}" class="btn bg-gradient-primary">View <i class="bi bi-pencil-square"></i></a>
+                                <div class="ml-2"><a href="{{route('products.edit',$row->id)}}" class="btn btn-info">Edit <i class="bi bi-pencil-square"></i></a></div>
                                 <form action="{{route('products.destroy',$row->id)}}" method="Post" class="deleteitem form-inline ml-2">
                                     @csrf 
                                     @method('DELETE')

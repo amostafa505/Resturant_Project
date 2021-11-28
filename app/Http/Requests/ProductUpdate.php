@@ -32,7 +32,9 @@ class ProductUpdate extends FormRequest
             'menu_id'       => 'required',
             'description'   => 'nullable|min:10|max:200',
             'status'        => 'required|in:pending,active,notactive',
-            'img'           => 'nullable|image|mimes:jpeg,png,jpg,gif,svg', 
+            'discount'      => 'nullable|numeric',
+            'image_id'      => 'required',
+            'image_id.*'    => 'mimes:jpeg,png,jpg,gif,svg',
         ];
     }
     // public function failedValidation(Validator $validator)

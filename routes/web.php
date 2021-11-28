@@ -58,6 +58,7 @@ Route::post('contact', ['url' => 'contact', 'uses' =>
 
 // Here is the Route of the WebSite    
 Route::get('/' , "\App\Http\Controllers\HomeController@index")->name('index');
+Route::get('/productpreview/{id}', "\App\Http\Controllers\HomeController@productview")->name('productpreview');
 Route::get('/menu' , "\App\Http\Controllers\HomeController@menu")->name('menu');
 Route::get('/gallary' , "\App\Http\Controllers\HomeController@gallary")->name('gallary');
 Route::get('/chef' , "\App\Http\Controllers\HomeController@chef")->name('chef');

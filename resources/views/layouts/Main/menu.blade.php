@@ -21,6 +21,9 @@
                         @foreach ($value as $product)
                             @if($product->menu_id === $menu->id)
                                 <div class="menu-item">
+                                    {{-- <div class="shape-text">
+                                        {{$product->discount}}%								
+                                    </div> --}}
                                     <div class="menu-item-name"> {{$product->name}} </div>
                                     <div class="menu-item-price"> {{$product->price}} </div>
                                     <div class="menu-item-description"> {{$product->description}} </div>
