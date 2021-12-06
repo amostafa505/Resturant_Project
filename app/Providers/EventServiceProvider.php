@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\Events\Registered;
+use App\Events\OrderEvent;
 use App\Events\contactformEvent;
+use App\Listeners\OrderListener;
 use App\Listeners\ContactListener;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         contactformEvent::class => [
             ContactListener::class,
+        ],
+        OrderEvent::class => [
+            OrderListener::class,
         ],
     ];
 

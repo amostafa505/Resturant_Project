@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
+use App\Events\OrderEvent;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
@@ -90,7 +92,7 @@ class CartController extends Controller
                 'billing_email' => $request->email,
                 'billing_phone' => $request->phone,
             ]);
-
+            
             //Add to Order_product Table
             
             foreach(session('cart')->items as $item)
@@ -101,7 +103,9 @@ class CartController extends Controller
                     'quantity'=> $item['qty']
                 ]);
             }
-                
+            //send an email to the User with his order
+            event(new OrderEvent($order));
+
             //Remove the cart from Session and send a success Massage
             session()->forget('cart');
             toastr()->success('Payment Done Enjoy Your Meal');
