@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\FoodMenusController;
-use App\Http\Controllers\ProductsController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\chefController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\OrdersController;
 // use App\Http\Controllers\contactController;
 // use App\Http\Controllers\HomeController;
 // use App\Http\Controllers\cpanelController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\FoodMenusController;
 
 
 /*
@@ -21,25 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('layouts.Main.index');
-// });
-
-// route::group(['middleware'=>'auth'],function(){
-//     route::group([
-//         // 'namespace'=>'Admin',
-//         // 'prefix' => 'admin',
-//         'middleware' => 'is_admin',
-//         'as' => 'admin'
-//     ], function(){
-//         Route::get('admin', function () {
-//             return view('layouts/admin/index');
-//         });
-//         Route::resource('user' , UsersController::class);
-
-//     });
-
-// });
 
 // Here To Make Only the admin users who can enter this group of URL's
 route::middleware('auth' , 'is_admin')->group(function(){
@@ -48,6 +30,7 @@ route::middleware('auth' , 'is_admin')->group(function(){
     Route::Resource('menus' , FoodMenusController::class);
     Route::Resource('chefs' , chefController::class);
     Route::Resource('products' , ProductsController::class);
+    Route::Resource('orders' , OrdersController::class);
 });
 require __DIR__.'/auth.php';
 
@@ -63,3 +46,11 @@ Route::get('/menu' , "\App\Http\Controllers\HomeController@menu")->name('menu');
 Route::get('/gallary' , "\App\Http\Controllers\HomeController@gallary")->name('gallary');
 Route::get('/chef' , "\App\Http\Controllers\HomeController@chef")->name('chef');
 Route::get('/contact' , "\App\Http\Controllers\HomeController@contact")->name('contact');
+
+//Cart & Orders Routes 
+Route::get('/addtocart/{id}' , "\App\Http\Controllers\CartController@addToCart")->name('add.cart');
+Route::get('/showcart' , "\App\Http\Controllers\CartController@showCart")->name('show.cart');
+Route::get('/checkout/{amount}' , "\App\Http\Controllers\CartController@checkout")->name('cart.checkout')->middleware('auth');
+Route::post('/charge' , "\App\Http\Controllers\CartController@charge")->name('cart.charge');
+Route::delete('/carts/{cart}',"\App\Http\Controllers\CartController@destroy")->name('cart.remove');
+Route::Put('/carts/{cart}',"\App\Http\Controllers\CartController@update")->name('cart.update');

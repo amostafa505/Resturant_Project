@@ -93,7 +93,7 @@
                             </div>    
                             <div class="menu-item-links col-xs-2">
                                 <a href="{{Route('productpreview', $product->id)}}" class="btn btn-default">View</a>
-                                <a href="" class="btn btn-default" style="margin-top:5px">Add To Cart</a>
+                                <a href="{{Route('add.cart' , $product->id)}}" class="btn btn-default" style="margin-top:5px">Add To Cart</a>
                             </div>
                             
                         </div>

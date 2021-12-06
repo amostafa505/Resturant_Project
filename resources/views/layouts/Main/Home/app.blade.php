@@ -30,6 +30,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+    @yield('style')
 
 </head>
 
@@ -54,6 +55,7 @@
     <script type="text/javascript" src="{{asset('js/jqBootstrapValidation.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/contact_me.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+    @yield('Jscript')
 </body>
 
 </html>

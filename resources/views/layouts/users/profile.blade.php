@@ -20,6 +20,8 @@
                     <div class="about-text">
                         <h3 class="dark-color">Name : {{$user->name}}</h3>
                         <h4 class="theme-color">Email : {{$user->email}}</h4>
+                        <h4 class="theme-color">Address : {{$user->address}}</h4>
+                        <h4 class="theme-color">Phone : {{$user->phone}}</h4>
                         {{-- <div class="btn-bar">
                             <a class="px-btn theme" href="#">View Works</a>
                             <a class="px-btn theme-t" href="#">Download CV</a>

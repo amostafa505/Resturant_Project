@@ -35,6 +35,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+           {{-- User Section      --}}
           <li class="nav-item @if(Request()->segment(1) == 'users') menu-open @endif ">
             <a href="#" class="nav-link @if(Request()->segment(1) == 'users') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -64,6 +65,8 @@
               </li>
             </ul>
           </li>
+          {{-- End User Section  --}}
+          {{-- Menu Section  --}}
           <li class="nav-item @if(Request()->segment(1) == 'menus') menu-open @endif">
             <a href="#" class="nav-link @if(Request()->segment(1) == 'menus') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -87,6 +90,8 @@
               </li>
             </ul>
           </li>
+          {{-- End Menu Section  --}}
+          {{-- Product Section  --}}
           <li class="nav-item @if(Request()->segment(1) == 'products') menu-open @endif">
             <a href="#" class="nav-link @if(Request()->segment(1) == 'products') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -110,6 +115,8 @@
               </li>
             </ul>
           </li>
+          {{-- End Product Section --}}
+          {{-- Chef Section --}}
           <li class="nav-item @if(Request()->segment(1) == 'chefs') menu-open @endif">
             <a href="#" class="nav-link @if(Request()->segment(1) == 'chefs') active @endif ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -133,6 +140,26 @@
               </li>
             </ul>
           </li>
+          {{-- End Chef Section --}}
+          {{-- Order Section --}}
+          <li class="nav-item @if(Request()->segment(1) == 'orders') menu-open @endif">
+            <a href="#" class="nav-link @if(Request()->segment(1) == 'orders') active @endif ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Order Section
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('orders.index')}}" class="nav-link @if(Route::current()->getName() == 'orders.index') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Orders</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- End Order Section --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -17,26 +17,35 @@
                 <div class="menu-section">
                     <h2 class="menu-section-title">{{$menu->menu_name}}</h2>
                     <hr>
-                    @foreach($productslimit as $key=>$value)
-                        @foreach ($value as $product)
-                            @if($product->menu_id === $menu->id)
-                                <div class="menu-item">
-                                    {{-- <div class="shape-text">
-                                        {{$product->discount}}%								
-                                    </div> --}}
-                                    <div class="menu-item-name"> {{$product->name}} </div>
-                                    <div class="menu-item-price"> {{$product->price}} </div>
-                                    <div class="menu-item-description"> {{$product->description}} </div>
-                                </div>
-                            @endif
+                    @foreach($menu->products as $product)
+                    @if($product->foodmenu->menu_name === $menu->menu_name)
+                    <div class="menu-item row" >
+                        <div class="menu-item-image col-xs-3">
+                            <img src="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" class="" alt="">
+                        </div>
+                        <div class="menu-item-text col-xs-7">
+                            <div class="menu-item-name">{{$product->name}}</div>
+                            @if($product->discount)<div class="menu-item-price"><strong>{{$product->price_discount}}</strong></div>
+                            @else <div class="menu-item-price">{{$product->price}}</div>@endif
+                            <div class="menu-item-description"> {{$product->description}} </div>
+                            @if($product->discount)<div class="menu-item-discount"><s>{{$product->price}}</s></div><br>
+                            <div class="menu-item-discount"><small>Disccount {{$product->discount}}%</small></div>
+                           @endif
                             
-                        @endforeach
+                        </div>    
+                        <div class="menu-item-links col-xs-2">
+                            <a href="{{Route('productpreview', $product->id)}}" class="btn btn-default">View</a>
+                            <a href="{{Route('add.cart' , $product->id)}}" class="btn btn-default" style="margin-top:5px">Add To Cart</a>
+                        </div>
+                        
+                    </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
             @endforeach
         </div>
-        </div>
+    </div>
     </div>
 </div>
 

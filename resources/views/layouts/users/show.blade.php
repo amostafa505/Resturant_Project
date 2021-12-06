@@ -27,6 +27,8 @@
                     <th>ID</th>
                     <th>User</th>
                     <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone</th>
                     <th>Is_admin</th>
                     <th>Profile Photo</th>
                 </tr>
@@ -38,6 +40,8 @@
                         <th scope="row">{{$id++}}</th>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>{{$user->address}}</td>
+                        <td>{{$user->phone}}</td>
                         @if($user->is_admin =='1')         
                         <td>Admin</td>         
                         @else

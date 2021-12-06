@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\chef;
 use App\Models\FoodMenu;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 
@@ -21,7 +22,8 @@ class cpanelController extends Controller
         $chefs = chef::all()->count();
         $products = Product::all()->count();
         $menus = foodmenu::all()->count();
-        return view('layouts/admin/index' , compact('users', 'chefs' , 'products' , 'menus'));
+        $orders = Order::all()->count();
+        return view('layouts/admin/index' , compact('users', 'chefs' , 'products' , 'menus' , 'orders'));
     }
    
 }

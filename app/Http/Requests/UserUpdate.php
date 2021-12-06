@@ -27,6 +27,8 @@ class UserUpdate extends FormRequest
         return [
             'name'      => 'required|string|min:5|max:50',
             'email'     => ['required', 'email', 'max:255',Rule::unique('users')->ignore($this->user)], //<= this Rule for makeing the unique validation not working when the same email given in updating
+            'address'   => 'nullable|string|min:10|max:100',
+            'phone'     => 'nullable|string|min:9|max:13',
             'password'  => 'nullable|string|min:6|max:60',
             'img'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'is_admin'  => 'required|boolean',

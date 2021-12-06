@@ -27,6 +27,8 @@ class userStore extends FormRequest
         return [
             'name'      => 'required|string|min:5|max:50|unique:users,name',
             'email'     => 'required|email:filter|unique:users,email',
+            'address'   => 'nullable|string|min:10|max:100',
+            'phone'     => 'nullable|string|min:10|max:15',
             'password'  => 'required|string|min:6|max:60',
             'img'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'is_admin'  => 'required|boolean',
