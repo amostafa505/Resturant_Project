@@ -12,7 +12,7 @@ class UsersController extends Controller
     // this Construct Function is For Accepting that the Guest Can Create and account
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['create','store']]);
+        $this->middleware('auth', ['except' => ['create','store', 'show']]);
     }
     /**
      * Display a listing of the resource.

@@ -14,8 +14,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $data = Order::with('user')->get();
-        // dd($data);
+        $data = Order::with('user')->paginate(10);
         return view('layouts/orders/show' , compact('data'))->with('id' , 1);
     }
 
@@ -52,7 +51,17 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $request->validate([
+            'status' => 'in:pending,shipped,canceled,rejected,accepted,pending'
+        ]);
+
+        $order = Order::find($id);
+        $order->orderstatus = $request->status;
+        $order->save();
+
+        $response['row'] = $order;
+        return back()->with($response);
     }
 
     /**
@@ -63,7 +72,14 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        Order::destroy($id);
+        $order = Order::destroy($id);
         return response()->json(["status"=>"success" , "Message"=>"Deleted Succussfully"]);
+    }
+
+    public function filterByStatus($status)
+    {
+        $status = Order::where('orderstatus' , '=' , $status)->get();
+        // dd($status);
+        return response()->json(["status"=>"success"  , "data"=>$status]);
     }
 }

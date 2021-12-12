@@ -26,7 +26,7 @@ class CartController extends Controller
         // dd($cart);
         session()->put('cart' , $cart);
         toastr()->success('Done Add Product To Your Cart');
-        return back();
+        return response()->json(["status"=>"success" , "Message"=>"Done Add the item in your Cart" , "totalQuantity" =>$cart->totalQty]);
     }
     public function showCart() {
 
@@ -52,7 +52,7 @@ class CartController extends Controller
         $cart->updateQty($id ,$request->qty);
         session()->put('cart',$cart);
         toastr()->success('Done Update item from your Cart');
-        return back();
+        return response()->json(["status"=>"success" , "Message"=>"Done Update the item in your Cart" , "totalPrice"=>$cart->totalPrice , "totalQuantity" =>$cart->totalQty]);
     }
 
 
@@ -61,15 +61,14 @@ class CartController extends Controller
         // dd($id);
         $cart = new Cart(session()->get('cart'));
         $cart->remove($cart->items[$id]);
-        // dd($cart->total);
+        // dd($cart->totalPrice);
 
         if($cart->totalQty <= 0 ){
             session()->forget('cart');
         }else{
             session()->put('cart' , $cart);
         }
-        toastr()->success('Done remove the item from your Cart');
-        return back();
+        return response()->json(["status"=>"success" , "Message"=>"Done remove the item from your Cart" , "totalPrice"=>$cart->totalPrice , "totalQuantity" =>$cart->totalQty]);
     }
 
     public function charge(Request $request){

@@ -1,4 +1,4 @@
-    <!-- Contact Section -->
+  <!-- Contact Section -->
     <div id="contact" class="text-center">
         <div class="container">
             <div class="section-title text-center">
@@ -16,28 +16,28 @@
                     </ul>
                 </div>
                 @endif
-                <form name="sentMessage" id="contactForm"  action="{{route('contact.send')}}" method="Post" novalidate>
+                <form name="sentMessage" id="contactForm"  action="{{route('contact.send')}}" method="Post" >
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Name" required="required">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Name" >
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required="required">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Email" >
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <textarea name="msg" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+                        <textarea name="msg" id="message" class="form-control" rows="4" placeholder="Message" ></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                     <div id="success"></div>
-                    <button type="submit" class="btn btn-custom btn-lg">Send Message</button>
+                    <button type="submit" formaction="{{route('contact.send')}}"  class="btn btn-custom btn-lg">Send Message</button>
                 </form>
             </div>
         </div>

@@ -21,25 +21,32 @@
                     <li><a href="{{route('chef')}}" class="page-scroll">Chefs</a></li>
                     <li><a href="{{route('contact')}}" class="page-scroll">Contact</a></li>
                     {{-- To Show the Cart Icon if there is an item in the cart --}}
-                    @if(session()->has('cart'))
-                    <li><a href="{{route('show.cart')}}" class="page-scroll"><span class="fa fa-shopping-cart" aria-hidden="true"> My Cart ({{ session()->has('cart') ? session()->get('cart')->totalQty : '0'}})</span></a></li>
-                    @endif
+                    {{-- @if(session()->has('cart')) --}}
+                    <li><a href="{{route('show.cart')}}" class="page-scroll"><span class="fa fa-shopping-cart" aria-hidden="true" id="cartqty"> My Cart ({{ session()->has('cart') ? session()->get('cart')->totalQty : '0'}})</span></a></li>
+                    {{-- @endif --}}
                     {{-- To Show the User name and a dropdown menu with a logout link if there is a user signed in --}}
                     @if(Auth::user())
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" style="background-color: transparent" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} 
                             {{-- <span class="caret"></span> --}}
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
+                        
+                        <div class="dropdown-menu dropdown-menu-right" style="background-color: #72a411; font-weight:800; text-align: center;" aria-labelledby="navbarDropdown">
+                            <a href="{{route('user.profile',Auth()->check()? Auth()->user()->id : '')}}"class="dropdown-item nav-link" style="display: block ; color:white;" >Profile</a>
+                            <hr style="height: 2px;position: relative;margin:0; width:100%">
+                            <a class="dropdown-item nav-link " href="{{route('show.order',Auth()->check()? Auth()->user()->id : '')}}" style="display: block ;color:white ;">Orders</a>
+                            <hr style="height: 2px;position: relative;margin:0; width:100%">
+                            <a class="dropdown-item" style="color:white ;" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                            
+                            
                         </div>
                     </li>
                     @endif

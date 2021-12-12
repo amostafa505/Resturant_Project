@@ -40,7 +40,7 @@
           <i class="far fa-comments"></i>
           <span class="badge badge-danger navbar-badge">3</span>
         </a> --}}
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        {{-- <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('logout') }}"
                  onclick="event.preventDefault();
@@ -51,7 +51,7 @@
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
               </form>
-          </div>
+          </div> --}}
           <li class="nav-item">
             <a class="nav-link" href="{{route('users.show',Auth()->check()? Auth()->user()->id : '')}}">Profile</a>
           </li>

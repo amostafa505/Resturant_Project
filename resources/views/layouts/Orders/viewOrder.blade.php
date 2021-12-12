@@ -38,7 +38,7 @@
                             <tr>
                                 <th scope="row">{{$id++}}</th>
                                 <td>{{$item->name}}</td>
-                                <td>{{$item->pricediscount}}</td>
+                                <td>${{$item->pricediscount}}</td>
                                 <td>{{$item->pivot->quantity}}</td>
                             </tr>
                         @endforeach

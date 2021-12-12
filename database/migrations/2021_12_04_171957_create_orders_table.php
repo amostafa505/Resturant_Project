@@ -19,7 +19,6 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')
                   ->references('id')->on('users')
                   ->onDelete('cascade');
-            // $table->text('cart');
             $table->integer('totalPrice');
             $table->string('billing_address');
             $table->string('billing_email');

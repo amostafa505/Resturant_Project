@@ -35,7 +35,7 @@
                         </div>    
                         <div class="menu-item-links col-xs-2">
                             <a href="{{Route('productpreview', $product->id)}}" class="btn btn-default">View</a>
-                            <a href="{{Route('add.cart' , $product->id)}}" class="btn btn-default" style="margin-top:5px">Add To Cart</a>
+                            <a href="{{Route('add.cart' , $product->id)}}" class="btn btn-default add-to-cart" style="margin-top:5px">Add To Cart</a>
                         </div>
                         
                     </div>
@@ -49,4 +49,31 @@
     </div>
 </div>
 
+@endsection
+
+@section('Jscript')
+    <script>
+        $(".add-to-cart").on("click",function(event){
+            event.preventDefault();
+            $url = $(this).attr("href");
+            var data = $(this).serialize();
+            $.ajax({
+                "url":$url,
+                "type":"get",
+                "data":data,
+                success:function(data){
+                    if(data.status === 'success'){
+                        toastr.success(data.Message);
+                        $('#cartqty').html("");
+                        $('#cartqty').html(`My Cart (${data.totalQuantity})`);       
+                    };
+                },
+                error: function( data ){
+                    if ( data.status === 422 ) {
+                        toastr.error('Cannot Add This Product into the Cart');
+                    }
+                }
+            });
+        });
+    </script>    
 @endsection

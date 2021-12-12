@@ -2,32 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\models\FoodMenu;
-use App\models\Product;
 use App\Models\chef;
+use App\Models\User;
+use App\models\Product;
+use App\models\FoodMenu;
+use Illuminate\Http\Request;
 
 
 class HomeController extends Controller
 {
-    public function index(){
-        // $product = Product::limit(4)->get();
-        // // dd($menu);
-        // $contents = [];
-        //     foreach($menus as $menu){
-            //     $menu = $menu->products()->with('status' , 'Active')->limit(4);
-            // }
-            // dd($contents);        
-            // $products = product::all();
-            // $menus = foodmenu::with(['products' => function ($query) {
-                //     $query->latest()->limit(4);
-                // }])->get();
-                
-                // $products = product::all();
-                // dd($productslimit);
-                // foreach($menus as $menu):
-                //     $productslimit[] = $menu->products()->take(4)->get();
-                // endforeach;    
+    public function index(){   
         $menus = FoodMenu::with('products')->get();
         $products_data = product::with('foodmenu')->get();
         $chefs = chef::all();
@@ -64,6 +48,8 @@ class HomeController extends Controller
         $product = product::find($id);
         return view('layouts.main.product' , compact('product'));
     }
+
+
     
 
 }

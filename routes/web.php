@@ -47,10 +47,17 @@ Route::get('/gallary' , "\App\Http\Controllers\HomeController@gallary")->name('g
 Route::get('/chef' , "\App\Http\Controllers\HomeController@chef")->name('chef');
 Route::get('/contact' , "\App\Http\Controllers\HomeController@contact")->name('contact');
 
+//User Preview
+Route::get('/userprofile/{id}' , "\App\Http\Controllers\UserProfileController@userprofile")->name('user.profile')->middleware('auth');
+Route::get('/useredit/{id}' , "\App\Http\Controllers\UserProfileController@editprofile")->name('edit.profile')->middleware('auth');
+Route::put('/useredit/{id}' , "\App\Http\Controllers\UserProfileController@updateProfile")->name('update.profile')->middleware('auth');
+Route::get('/userorders/{id}' , "\App\Http\Controllers\UserProfileController@userOrders")->name('show.order')->middleware('auth');
+
 //Cart & Orders Routes 
 Route::get('/addtocart/{id}' , "\App\Http\Controllers\CartController@addToCart")->name('add.cart');
 Route::get('/showcart' , "\App\Http\Controllers\CartController@showCart")->name('show.cart');
 Route::get('/checkout/{amount}' , "\App\Http\Controllers\CartController@checkout")->name('cart.checkout')->middleware('auth');
 Route::post('/charge' , "\App\Http\Controllers\CartController@charge")->name('cart.charge');
 Route::delete('/carts/{cart}',"\App\Http\Controllers\CartController@destroy")->name('cart.remove');
-Route::Put('/carts/{cart}',"\App\Http\Controllers\CartController@update")->name('cart.update');
+Route::POST('/carts/{cart}',"\App\Http\Controllers\CartController@update")->name('cart.update');
+Route::post('/orders/filter/{status}',"\App\Http\Controllers\OrdersController@filterByStatus")->name('order.filter');

@@ -60,26 +60,6 @@
                   <label for="cat">Item Discount %</label>
                   <input type="text" name="discount" class="form-control" id="cat" >
               </div>
-                {{-- <div class="input-group mb-3 justify-content-between">
-                  <div class="form-check">
-                        <input class="form-check-input" name="status" value="pending" type="radio" checked>
-                        <label class="form-check-label" for="exampleRadios1">
-                        Pending
-                        </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" name="status" value="active" type="radio" >
-                        <label class="form-check-label" for="exampleRadios2">
-                        Active
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" name="status" value="notactive" type="radio">
-                        <label class="form-check-label" for="exampleRadios3">
-                          Not-Active
-                        </label>
-                      </div>
-                    </div> --}}
                     <div class="form-group">
                       <label>Status</label>
                       <select class="form-control" name="status">
