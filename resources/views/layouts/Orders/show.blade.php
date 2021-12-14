@@ -54,7 +54,7 @@
                                     @method('PUT')
                                     <div class="dropdown ml-2">
                                         <input type="hidden" name="id" class="id" value="{{$row->id}}">
-                                        <select  class="form-control dropdown-toggle" onchange="this.form.submit()" name="status">
+                                        <select  class="form-control dropdown-toggle" onchange="$('.ordersts').submit()" name="status">
                                             <option value="pending"  @if(@$row->orderstatus == "pending") selected @endif>Pending</option>
                                             <option value="shipped"  @if(@$row->orderstatus == "shipped") selected @endif>Shipped</option>
                                             <option value="accepted" @if(@$row->orderstatus == "accepted") selected @endif>Accepted</option>
@@ -118,26 +118,27 @@
         // Change the Status with Ajax
         $(".ordersts").on("submit" , function(event){
             event.preventDefault();
-            var action = $(this).attr("action");
-            var data = $(this).serialize();
-            var rowId = $('#id').val();
-            // $row = $(this);
-            $.ajax({
-                "url":action,
-                "type":"PUT",
-                "data":data,
-                success:function(databack){
-                    console.log(databack);
-                    if(databack.status === 'success'){
-                        toastr.success(databack.Message);
-                    };
-                },
-                error: function( databack ){
-                if ( databack.status === 422 ) {
-                toastr.error('Cannot Update This Order Status');
-                    }
-                }
-            });
+            console.log(event);
+            // var action = $(this).attr("action");
+            // var data = $(this).serialize();
+            // var rowId = $('#id').val();
+            // // $row = $(this);
+            // $.ajax({
+            //     "url":action,
+            //     "type":"PUT",
+            //     "data":data,
+            //     success:function(databack){
+            //         console.log(databack);
+            //         if(databack.status === 'success'){
+            //             toastr.success(databack.Message);
+            //         };
+            //     },
+            //     error: function( databack ){
+            //     if ( databack.status === 422 ) {
+            //     toastr.error('Cannot Update This Order Status');
+            //         }
+            //     }
+            // });
         });
 
         // The Filter 
