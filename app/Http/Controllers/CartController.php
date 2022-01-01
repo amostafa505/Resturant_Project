@@ -39,12 +39,14 @@ class CartController extends Controller
             return view('layouts.main.cart.show', compact('cart'));
     }
 
-    public function checkout($amount){
+    public function checkout(){
+        $amount = session('cart')->totalPrice;
         return view('layouts.main.cart.checkout', compact('amount'));
     }
 
     public function update(Request $request , $id)
     {
+        // dd(session());
         $request->validate([
            'qty' => 'required|numeric' 
         ]);

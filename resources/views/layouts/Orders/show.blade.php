@@ -38,23 +38,24 @@
                 </thead>
                 <tbody id="filterdata">
                     @foreach ($data as $row)
-                        <tr>
+                        <tr class="order-user-row">
                             <th scope="row">{{ ($data->currentPage() - 1) * $data->perPage() + $loop->iteration }}</th>
                             <td>{{$row->user->name}}</td>
                             <td>{{$row->billing_address}}</td>
                             <td>{{$row->billing_email}}</td>
                             <td>{{$row->billing_phone}}</td>
                             <td>${{$row->totalPrice}}</td>
-                            <td>{{$row->orderstatus}}</td>
+                            <td class="order-user-status">{{$row->orderstatus}}</td>
                             <td>
                                 <div class="row">
                                 <a href="{{route('orders.show',$row->id)}}" class="btn bg-gradient-primary">View <i class="bi bi-pencil-square"></i></a>
-                                <form action="{{route('orders.update',$row->id)}}" method="POST" class="ordersts">
+                                {{-- <form action="{{route('orders.update',$row->id)}}" method="POST" class="ordersts" >
                                     @csrf
                                     @method('PUT')
+                                    onChange="this.form.submit()" --}}
                                     <div class="dropdown ml-2">
                                         <input type="hidden" name="id" class="id" value="{{$row->id}}">
-                                        <select  class="form-control dropdown-toggle" onchange="$('.ordersts').submit()" name="status">
+                                        <select  class="form-control dropdown-toggle status"  name="status">
                                             <option value="pending"  @if(@$row->orderstatus == "pending") selected @endif>Pending</option>
                                             <option value="shipped"  @if(@$row->orderstatus == "shipped") selected @endif>Shipped</option>
                                             <option value="accepted" @if(@$row->orderstatus == "accepted") selected @endif>Accepted</option>
@@ -62,7 +63,7 @@
                                             <option value="canceled" @if(@$row->orderstatus == "canceled") selected @endif>Canceled</option>
                                         </select>
                                     </div>
-                                </form>
+                                {{-- </form> --}}
                                 <form action="{{route('orders.destroy',$row->id)}}" method="Post" class="deleteitem form-inline ml-2">
                                     @csrf 
                                     @method('DELETE')
@@ -89,7 +90,7 @@
 @endsection
 
 @section('jsScript')
-    <script>
+    <script type="text/javascript">
         // delete item 
         $(".deleteitem").on("submit" , function(e){
             e.preventDefault();
@@ -115,30 +116,33 @@
             });
         });
 
-        // Change the Status with Ajax
-        $(".ordersts").on("submit" , function(event){
-            event.preventDefault();
-            console.log(event);
-            // var action = $(this).attr("action");
-            // var data = $(this).serialize();
+             
+        // });
+        $(".status").on("change" , function(event){
+            var id = $(".id").attr("value");
+            var url = '{{url("orders")}}'+ '/' + id;
+            var data = $(this).serialize();
             // var rowId = $('#id').val();
-            // // $row = $(this);
-            // $.ajax({
-            //     "url":action,
-            //     "type":"PUT",
-            //     "data":data,
-            //     success:function(databack){
-            //         console.log(databack);
-            //         if(databack.status === 'success'){
-            //             toastr.success(databack.Message);
-            //         };
-            //     },
-            //     error: function( databack ){
-            //     if ( databack.status === 422 ) {
-            //     toastr.error('Cannot Update This Order Status');
-            //         }
-            //     }
-            // });
+            $row = $(this).parent().parent().parent().siblings('.order-user-status');
+            $.ajax({
+                "url":url+'?_token=' + '{{ csrf_token() }}',
+                "type":"PUT",
+                "data":data,
+                success:function(data){
+                    if(data.status === 'success'){
+                        $($row).html("");
+                        $($row).html(`${data.data.orderstatus}`);
+                        toastr.success(data.Message);
+                    };
+                },
+                error: function( data ){
+                if ( data.status === 422 ) {
+                toastr.error('Cannot Update This Order Status');
+                    }
+                }
+            });
+
+             
         });
 
         // The Filter 
@@ -153,13 +157,14 @@
                 "data":$data,
                 success:function(data){
                     if(data.status === 'success'){
+                        
                         $("#filterdata").html("");
                         $("#pagination").html("");
                         $.each(data.data , function(key,value){
                             $("#filterdata").append(`
                             <tr>
                             <th scope="row">${value.id}</th>
-                            <td>${value.user_id}</td>
+                            <td>${value.user.name}</td>
                             <td>${value.billing_address}</td>
                             <td>${value.billing_email}</td>
                             <td>${value.billing_phone}</td>

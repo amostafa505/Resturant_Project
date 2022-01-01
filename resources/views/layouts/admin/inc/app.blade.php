@@ -56,9 +56,9 @@ $(function () {
   bsCustomFileInput.init();
 });
 </script>
-@yield('jsScript')
 @jquery
 @toastr_js
 @toastr_render
+@yield('jsScript')
 </body>
 </html>

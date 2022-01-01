@@ -25,6 +25,9 @@ class User extends Authenticatable
         'phone',
         'address',
         'img',
+        'avatar',
+        'social_id',
+        'social_type',
         'is_admin'
     ];
 

@@ -162,7 +162,7 @@
                                 </tbody>
                             </table>
                             <td>
-                            <a href="{{route('cart.checkout',$cart->totalPrice)}}" class="btn btn-success btn-lg btn-block"> <span class="glyphicon glyphicon-chevron-right"></span>Pay Now</a>
+                            <a href="{{route('cart.checkout')}}" class="btn btn-success btn-lg btn-block"> <span class="glyphicon glyphicon-chevron-right"></span>Pay Now</a>
                             </td>
                         </div>
                     </div>

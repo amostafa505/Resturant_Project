@@ -1,12 +1,16 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\chefController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\FacebookSocialiteController;
 // use App\Http\Controllers\contactController;
 // use App\Http\Controllers\HomeController;
 // use App\Http\Controllers\cpanelController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\FoodMenusController;
 
@@ -56,8 +60,13 @@ Route::get('/userorders/{id}' , "\App\Http\Controllers\UserProfileController@use
 //Cart & Orders Routes 
 Route::get('/addtocart/{id}' , "\App\Http\Controllers\CartController@addToCart")->name('add.cart');
 Route::get('/showcart' , "\App\Http\Controllers\CartController@showCart")->name('show.cart');
-Route::get('/checkout/{amount}' , "\App\Http\Controllers\CartController@checkout")->name('cart.checkout')->middleware('auth');
+Route::get('/checkout' , "\App\Http\Controllers\CartController@checkout")->name('cart.checkout')->middleware('auth');
 Route::post('/charge' , "\App\Http\Controllers\CartController@charge")->name('cart.charge');
 Route::delete('/carts/{cart}',"\App\Http\Controllers\CartController@destroy")->name('cart.remove');
 Route::POST('/carts/{cart}',"\App\Http\Controllers\CartController@update")->name('cart.update');
 Route::post('/orders/filter/{status}',"\App\Http\Controllers\OrdersController@filterByStatus")->name('order.filter');
+
+
+// Social Login and register
+Route::get('/login/facebook', [FacebookSocialiteController::class,'redirectTofacebook'])->name('facebook.login');
+Route::get('/login/facebook/callback', [FacebookSocialiteController::class,'handleCallback']);

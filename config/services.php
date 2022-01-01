@@ -32,5 +32,11 @@ return [
 
     'stripe' => [
         'secret' => 'sk_test_51K1G2XEzV4FHHKsgcfu9d7SBMsyjmCZGyhIejzSxBVMwaGknDfmjocnFrtrmOyuDULamGmX0QBuGcmi2UXn5U01u00A5RYiuTT',
-    ]
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => 'http://localhost/Sessions/Laravel%20Projects/Resturant_Project/public/login/facebook/callback',
+    ],
 ];

@@ -59,9 +59,9 @@ class OrdersController extends Controller
         $order = Order::find($id);
         $order->orderstatus = $request->status;
         $order->save();
-
-        $response['row'] = $order;
-        return back()->with($response);
+        return response()->json(["status"=>"success"  , "Message"=>"Status Updates Succussfully" , "data"=>$order]);
+        // $response['row'] = $order;
+        // return back()->with($response);
     }
 
     /**
@@ -78,7 +78,7 @@ class OrdersController extends Controller
 
     public function filterByStatus($status)
     {
-        $status = Order::where('orderstatus' , '=' , $status)->get();
+        $status = Order::where('orderstatus' , '=' , $status)->with('user')->get();
         // dd($status);
         return response()->json(["status"=>"success"  , "data"=>$status]);
     }
