@@ -36,7 +36,7 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     {{-- including the Navbar from TopMenu blade  --}}
-    @include('layouts.Main.Home.topmenu')
+    @include('layouts.Main.Home.Topmenu')
 
     {{-- including the Navbar from Main Content blade  --}}
     @yield('content')
