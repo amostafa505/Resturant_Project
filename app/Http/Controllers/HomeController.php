@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\chef;
 use App\Models\User;
-use App\models\Product;
-use App\models\FoodMenu;
+use App\Models\Product;
+use App\Models\FoodMenu;
 use Illuminate\Http\Request;
 
 

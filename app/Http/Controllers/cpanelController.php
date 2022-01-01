@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\chef;
+use App\Models\chef;
 use App\Models\FoodMenu;
 use App\Models\Order;
 use App\Models\Product;

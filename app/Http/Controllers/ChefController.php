@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\chefstore;
 use App\Http\Requests\chefupdate;
-use App\models\chef;
+use App\Models\chef;
 
 class ChefController extends Controller
 {
