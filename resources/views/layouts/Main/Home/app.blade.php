@@ -36,14 +36,14 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     {{-- including the Navbar from TopMenu blade  --}}
-    @include('layouts.main.home.topmenu')
+    @include('layouts.Main.Home.topmenu')
 
     {{-- including the Navbar from Main Content blade  --}}
     @yield('content')
     
     {{-- including the Navbar from Footer + Contact Form blade  --}}
     @section('footer')
-    @include('layouts.main.home.footer')
+    @include('layouts.Main.Home.footer')
     @show 
     
     @jquery
