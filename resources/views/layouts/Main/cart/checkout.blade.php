@@ -1,4 +1,4 @@
-@extends('layouts.main.home.app')
+@extends('layouts.Main.home.app')
 @section('style')
 <style>
     .StripeElement {
