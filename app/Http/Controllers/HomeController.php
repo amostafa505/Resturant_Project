@@ -15,7 +15,7 @@ class HomeController extends Controller
         $menus = FoodMenu::with('products')->get();
         $products_data = product::with('foodmenu')->get();
         $chefs = chef::all();
-        return view('layouts.main.index' , compact('menus','chefs', 'products_data'));
+        return view('layouts.Main.index' , compact('menus','chefs', 'products_data'));
     }
     //Menu Method to send the Menu and its products Data to the View
     public function menu(){
@@ -24,29 +24,29 @@ class HomeController extends Controller
             $productslimit[] = $menu->products()->take(4)->get();
         endforeach; 
         $products = Product::with('foodmenu')->get();
-        return view('layouts.main.menu' , compact('menus','products','productslimit'));
+        return view('layouts.Main.menu' , compact('menus','products','productslimit'));
     }
     //Gallary Method to send the Products to the View
     public function gallary(){
         $products = Product::with('foodmenu')->get();
         $menus = foodmenu::all();
-        return view('layouts.main.gallery' , compact('products' , 'menus'));
+        return view('layouts.Main.gallery' , compact('products' , 'menus'));
     }
 
     //Chef Method to send the Chefs Data to the View
     public function chef(){
         $chefs= Chef::all();
-        return view('layouts.main.chefs' , compact('chefs'));
+        return view('layouts.Main.chefs' , compact('chefs'));
     }
 
     //contact Method to show the View of the contact form
     public function contact(){
-        return view('layouts.main.contact');
+        return view('layouts.Main.contact');
     }
     //conact Method to show the View of the contact form
     public function productview($id){
         $product = product::find($id);
-        return view('layouts.main.product' , compact('product'));
+        return view('layouts.Main.product' , compact('product'));
     }
 
 
