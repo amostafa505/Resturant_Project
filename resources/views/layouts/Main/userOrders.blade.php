@@ -1,4 +1,4 @@
-@extends('layouts.Main.home.app')
+@extends('layouts.Main.Home.app')
 @section('style')
 <style>
 body{

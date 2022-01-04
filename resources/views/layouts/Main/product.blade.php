@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{asset('vendors/dist/css/adminlte.min.1.css')}}">
-@extends('layouts.Main.home.app')
+@extends('layouts.Main.Home.app')
 @section('content')
     
     <!-- Content Header (Page header) -->
