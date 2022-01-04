@@ -13,13 +13,13 @@ class UserProfileController extends Controller
         //User Profile Method to show the View of the User Data
         public function userprofile($id){
             $profile = User::find($id);
-            return view('layouts.main.profile' , compact('profile'));
+            return view('layouts.Main.profile' , compact('profile'));
         }
 
         //User Profile Edit Method to Edit the View of the User Data
         public function editprofile($id){
             $profile = User::find($id);
-            return view('layouts.main.editprofile' , compact('profile'));
+            return view('layouts.Main.editprofile' , compact('profile'));
         }
     /**
      * Update the specified resource in storage.
@@ -82,6 +82,6 @@ class UserProfileController extends Controller
     public function userOrders(Request $request){
         $id = auth()->user()->id;
         $orders = Order::where('user_id' , $id)->with('products')->paginate(10);
-        return view('layouts.main.userOrders',compact('orders'));
+        return view('layouts.Main.userOrders',compact('orders'));
     }
 }
