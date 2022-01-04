@@ -62,7 +62,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('layouts/users/Profile' , compact('user'));
+        return view('layouts/users/profile' , compact('user'));
     }
 
     /**

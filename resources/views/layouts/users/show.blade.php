@@ -47,7 +47,7 @@
                         @else
                             <td>User</td>        
                         @endif
-                        <td><img @if($user->img) ? src="{{asset('images/users/'.Auth::user()->img)}}" @else src="{{asset('images/users/defaultUserProfile.png')}}" @endif width="75" class="rounded" alt="No Picture"></td>
+                        <td><img @if($user->img) src="{{asset('images/users/'.$user->img)}}" @else src="{{asset('images/users/defaultUserProfile.png')}}" @endif width="75" class="rounded" alt="No Picture"></td>
                         <td>
                             <a href="{{route('users.edit',$user->id)}}" class="btn btn-info ">Edit <i class="bi bi-pencil-square"></i></a>
                             <form action="{{route('users.destroy' ,$user->id)}}" method="Post" class="deleteitem form-inline d-inline">

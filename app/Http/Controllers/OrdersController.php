@@ -15,7 +15,7 @@ class OrdersController extends Controller
     public function index()
     {
         $data = Order::with('user')->paginate(10);
-        return view('layouts/orders/show' , compact('data'))->with('id' , 1);
+        return view('layouts/Orders/show' , compact('data'))->with('id' , 1);
     }
 
     /**
@@ -28,7 +28,7 @@ class OrdersController extends Controller
     {
         $orders = Order::find($id)->products()->get();
         // dd($data);
-        return view('layouts/orders/viewOrder' , compact('orders'))->with('id' , 1);
+        return view('layouts/Orders/viewOrder' , compact('orders'))->with('id' , 1);
     }
 
     /**

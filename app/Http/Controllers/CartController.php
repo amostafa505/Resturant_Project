@@ -36,12 +36,12 @@ class CartController extends Controller
                 $cart = null;
             }
     
-            return view('layouts.main.cart.show', compact('cart'));
+            return view('layouts.Main.cart.show', compact('cart'));
     }
 
     public function checkout(){
         $amount = session('cart')->totalPrice;
-        return view('layouts.main.cart.checkout', compact('amount'));
+        return view('layouts.Main.cart.checkout', compact('amount'));
     }
 
     public function update(Request $request , $id)

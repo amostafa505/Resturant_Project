@@ -11,7 +11,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           {{-- Here Using a defualt Img if User have no Image as iam not make it required --}}
-          <img @if(Auth::user()->img) ? src="{{asset('images/users/'.Auth::user()->img)}}" @else src="{{asset('vendors/dist/img/user2-160x160.jpg')}}" @endif class="img-circle elevation-2" alt="">
+          <img @if(Auth::user()->img) src="{{asset('images/users/'.Auth::user()->img)}}" @else src="{{asset('vendors/dist/img/user2-160x160.jpg')}}" @endif class="img-circle elevation-2" alt="">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{Auth::user()->name}}</a>

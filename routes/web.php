@@ -32,7 +32,7 @@ route::middleware('auth' , 'is_admin')->group(function(){
     Route::get('cpanel' , "\App\Http\Controllers\cpanelController@index")->name('cpanel');
     Route::resource('users' , UsersController::class);
     Route::Resource('menus' , FoodMenusController::class);
-    Route::Resource('chefs' , chefController::class);
+    Route::Resource('chefs' , ChefController::class);
     Route::Resource('products' , ProductsController::class);
     Route::Resource('orders' , OrdersController::class);
 });
