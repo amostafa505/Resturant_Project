@@ -3,8 +3,7 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\chefController;
-use App\Http\Controllers\FacebookSocialiteController;
+use App\Http\Controllers\ChefController;
 // use App\Http\Controllers\contactController;
 // use App\Http\Controllers\HomeController;
 // use App\Http\Controllers\cpanelController;
@@ -13,6 +12,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\FoodMenusController;
+use App\Http\Controllers\FacebookSocialiteController;
 
 
 /*
