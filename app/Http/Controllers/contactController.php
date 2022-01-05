@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactFormRequest;
-use App\events\contactformEvent;
+use App\Events\contactformEvent;
 
 class contactController extends Controller
 {

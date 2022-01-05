@@ -113,7 +113,8 @@ class ProductsController extends Controller
         $product = Product::with('productImages')->find($product->id);
         $product->delete($product);
         foreach($product->productImages as $image){
-            unlink(public_path() .  '/storage/images/products/' . $image->name);
+            // unlink(public_path() .  '/storage/images/products/' . $image->name);
+            unlink(public_path() .  '/images/products/' . $image->name);
             // File::delete('/images/products/'.$image->name);
         }
         return response()->json(["status"=>"success" , "Message"=>"Deleted Succussfully"]);
@@ -129,7 +130,8 @@ class ProductsController extends Controller
                 $exten = $file->getClientOriginalExtension();
                 $imgnewname = uniqid(). '.' .$exten;
                 $destenationpath = 'images/products';
-                $file->storeAs($destenationpath , $imgnewname, 'public');
+                // $file->storeAs($destenationpath , $imgnewname, 'public');
+                $file->move($destenationpath , $imgnewname);
                 $newname[] = $imgnewname;
             }
             foreach($newname as $image){
@@ -146,8 +148,10 @@ class ProductsController extends Controller
             // dd($data);
             foreach($data as $image){
                 productImage::destroy($image->id);
-                if(file_exists(public_path() .  '/storage/images/products/' . $image->name)){
-                    unlink(public_path() .  '/storage/images/products/' . $image->name);    
+                // if(file_exists(public_path() .  '/storage/images/products/' . $image->name)){
+                //     unlink(public_path() .  '/storage/images/products/' . $image->name);    
+                if(file_exists(public_path() .  '/images/products/' . $image->name)){
+                    unlink(public_path() .  '/images/products/' . $image->name);    
                 }
             }
             $this->saveImage($request , $request->id);
