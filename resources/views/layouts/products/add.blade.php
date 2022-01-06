@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Item Section</h1>
+            <h1>Dish Section</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add New item</li>
+              <li class="breadcrumb-item active">Add New Dish</li>
             </ol>
           </div>
         </div>
@@ -29,7 +29,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add New Item</h3>
+                <h3 class="card-title">Add New Dish</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -45,19 +45,19 @@
               <form class="p-4 m-3 border bg-gradient-info" action="{{url('products')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="cat">Item Name</label>
+                    <label for="cat">Dish Name</label>
                     <input type="text" name="name" class="form-control" id="cat" >
                 </div>
                 <div class="form-group">
-                    <label for="cat">Item Price</label>
+                    <label for="cat">Dish Price</label>
                     <input type="text" name="price" class="form-control" id="cat" >
                 </div>
                 <div class="form-group">
-                    <label for="cat">Item Quantity</label>
+                    <label for="cat">Dish Quantity</label>
                     <input type="text" name="qty" class="form-control" id="cat" >
                 </div>
                 <div class="form-group">
-                  <label for="cat">Item Discount %</label>
+                  <label for="cat">Dish Discount %</label>
                   <input type="text" name="discount" class="form-control" id="cat" >
               </div>
                     <div class="form-group">
@@ -69,7 +69,7 @@
                       </select>
                     </div>
                     <div class="form-group">
-                      <label>Product Description</label>
+                      <label>Dish Description</label>
                       <textarea class="form-control" name="description" rows="3" placeholder="Enter The Product description here"></textarea>
                     </div>
                     <div class="form-group">

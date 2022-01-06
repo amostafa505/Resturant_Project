@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>User Section</h1>
+            <h1>Dish Section</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Edit User</li>
+              <li class="breadcrumb-item active">Edit Dish</li>
             </ol>
           </div>
         </div>
@@ -29,7 +29,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit User</h3>
+                <h3 class="card-title">Edit Dish</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -46,20 +46,20 @@
                 @csrf
                 @method("PUT")
                 <div class="form-group">
-                    <label for="cat">Product Name</label>
+                    <label for="cat">Dish Name</label>
                     <input type="text" name="name" value="{{$product->name}}" class="form-control" id="cat" >
                     <input type="hidden" name="id" value="{{$product->id}}">
                 </div>
                 <div class="form-group">
-                    <label for="cat">Product Price</label>
+                    <label for="cat">Dish Price</label>
                     <input type="text" name="price" value="{{$product->price}}" class="form-control" id="cat" >
                 </div>
                 <div class="form-group">
-                    <label for="cat">Product Quantity</label>
+                    <label for="cat">Dish Quantity</label>
                     <input type="text" name="qty" value="{{$product->qty}}" class="form-control" id="cat" >
                 </div>
                 <div class="form-group">
-                  <label for="cat">Product Discount %</label>
+                  <label for="cat">Dish Discount %</label>
                   <input type="text" name="discount" value="{{$product->discount}}" class="form-control" id="cat" >
               </div>
                 <div class="form-group">
@@ -87,7 +87,11 @@
                  </button>
             </form>
             <div class="form text-center">
-                <img src="{{asset('images/products/'.$product->img)}}" width="500" class="rounded">
+                {{-- <img src="{{asset('images/products/'.$product->img)}}" width="500" class="rounded"> --}}
+                @foreach ($product->productimages as $image)  
+                {{-- <div class="product-image-thumb active"><img src="{{Storage::url('/images/products/'.$image->name)}}" alt="Product Image"></div> --}}
+                <div class="product-image-thumb active"><img src="{{asset('/images/products/'.$image->name)}}" alt="Dish Image"></div>
+              @endforeach
             </div>
           </div>
         </div>
