@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')
                   ->references('id')->on('users')
                   ->onDelete('cascade');
-            $table->integer('totalPrice');
+            $table->decimal('totalPrice');
             $table->string('billing_address');
             $table->string('billing_email');
             $table->string('billing_phone');
