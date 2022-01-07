@@ -18,29 +18,30 @@
                     <h2 class="menu-section-title">{{$menu->menu_name}}</h2>
                     <hr>
                     @foreach($menu->products as $product)
-                    @if($product->foodmenu->menu_name === $menu->menu_name)
-                    <div class="menu-item row" >
-                        <div class="menu-item-image col-xs-3">
-                            <img src="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" class="" alt="">
-                        </div>
-                        <div class="menu-item-text col-xs-7">
-                            <div class="menu-item-name">{{$product->name}}</div>
-                            @if($product->discount)<div class="menu-item-price"><strong>{{$product->price_discount}}</strong></div>
-                            @else <div class="menu-item-price">{{$product->price}}</div>@endif
-                            <div class="menu-item-description"> {{$product->description}} </div>
-                            @if($product->discount)<div class="menu-item-discount"><s>{{$product->price}}</s></div><br>
-                            <div class="menu-item-discount"><small>Disccount {{$product->discount}}%</small></div>
-                           @endif
-                            
-                        </div>    
-                        <div class="menu-item-links col-xs-2">
-                            <a href="{{Route('productpreview', $product->id)}}" class="btn btn-default">View</a>
-                            <a href="{{Route('add.cart' , $product->id)}}" class="btn btn-default add-to-cart" style="margin-top:5px">Add To Cart</a>
-                        </div>
-                        
-                    </div>
+                        @if($product->status==='active')
+                            @if($product->foodmenu->menu_name === $menu->menu_name)
+                                <div class="menu-item row" >
+                                    <div class="menu-item-image col-xs-3">
+                                        {{-- <img src="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" class="" alt=""> --}}
+                                        <img src="{{asset('/images/products/'.$product->productImages[0]->name)}}" class="" alt="">
+                                    </div>
+                                    <div class="menu-item-text col-xs-7">
+                                        <div class="menu-item-name">{{$product->name}}</div>
+                                        @if($product->discount)<div class="menu-item-price"><strong>{{$product->price_discount}}</strong></div>
+                                            @else <div class="menu-item-price">{{$product->price}}</div>@endif
+                                            <div class="menu-item-description"> {{$product->description}} </div>
+                                            @if($product->discount)<div class="menu-item-discount"><s>{{$product->price}}</s></div><br>
+                                            <div class="menu-item-discount"><small>Disccount {{$product->discount}}%</small></div>
+                                        @endif
+                                    </div>    
+                                    <div class="menu-item-links col-xs-2">
+                                        <a href="{{Route('productpreview', $product->id)}}" class="btn btn-default">View</a>
+                                        <a href="{{Route('add.cart' , $product->id)}}"  class="btn btn-default add-to-cart" style="margin-top:5px">Add To Cart</a>
+                                    </div>
+                                </div>
+                            @endif
                         @endif
-                    @endforeach
+                @endforeach
                 </div>
             </div>
             @endforeach

@@ -94,15 +94,24 @@ class CartController extends Controller
                 'billing_phone' => $request->phone,
             ]);
             
-            //Add to Order_product Table
             
             foreach(session('cart')->items as $item)
             {
+                //Add to Order_product Table
                 OrderProduct::create([
                     'order_id'=>$order->id,
                     'product_id'=>$item['id'],
                     'quantity'=> $item['qty']
                 ]);
+
+                //this code for decrease the Dish Qty After a valid purchase 
+                //also change the status if the qty is equal 0 or less to not active
+                $product = Product::find($item['id']);
+                $product->decrement('qty', $item['qty']);
+                if($product->qty <= 0){
+                    $product->status = 'notactive';
+                    $product->save();
+                }
             }
             //send an email to the User with his order
             event(new OrderEvent($order));
