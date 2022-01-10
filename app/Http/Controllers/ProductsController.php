@@ -130,14 +130,15 @@ class ProductsController extends Controller
                 $exten = $file->getClientOriginalExtension();
                 $imgnewname = uniqid(). '.' .$exten;
                 // saving images in the public path directly 
-                $destenationpath = 'images/products/';
+                $destenationpath = 'images/products';
                 // $file->move($destenationpath , $imgnewname);
                 // saving images using the local storage by laravel storage link 
                 // $file->storeAs($destenationpath , $imgnewname, 'public');
                 
                 //saving images using the AWS s3 Bucket
-                $file->storeAs($destenationpath ,$imgnewname, 's3');
-                // Storage::disk('s3')->put($destenationpath , file_get_contents($file));
+                // $file->storeAs($destenationpath ,$imgnewname, 's3');
+                $imgnewname = Storage::disk('s3')->put($destenationpath , $file);
+                // dd($imgnewname);
                 // $url = Storage::disk('s3')->url($path);
                 $newname[] = $imgnewname;
             }
