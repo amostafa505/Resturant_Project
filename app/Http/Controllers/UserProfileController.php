@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserUpdate;
+use Illuminate\Support\Facades\Storage;
 
 
 class UserProfileController extends Controller
@@ -38,19 +39,15 @@ class UserProfileController extends Controller
         return redirect('/');
     }
 
-    public function deleteimg($data){
-        if(file_exists(public_path() .  '/images/users/' . $data->img) && $data->img !=null){
-            unlink(public_path() .  '/images/users/' . $data->img);    
-        }
-    }
-    
+
     public function saveImage($request){
         if($request->hasFile('img')){
             $file = $request->file('img');
             $exten = $file->getClientOriginalExtension();
             $newname = uniqid(). '.' .$exten;
             $destenationpath = 'images/users/';
-            $file->move($destenationpath , $newname);
+            $newname = Storage::disk('s3')->put($destenationpath , $file);
+            // $file->move($destenationpath , $newname);
             return $newname;
         }
     }
@@ -58,7 +55,10 @@ class UserProfileController extends Controller
     public function updateImage($request){
         $data = User::find($request->id);
         if($request->img){
-            $this->deleteimg($data);
+            // $this->deleteimg($data);
+            if(Storage::disk('s3')->exists($data->img)){
+                Storage::disk('s3')->delete($data->img);
+            }
             $img = $this->saveImage($request);
             $validated['img'] = $img;
         }else{

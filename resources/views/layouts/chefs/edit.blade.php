@@ -63,7 +63,7 @@
                  </button>
             </form>
             <div class="form text-center">
-                <img src="{{asset('images/chefs/'.$chef->img)}}" width="500" class="rounded">
+                <img src="{{Storage::disk('s3')->url($chef->img)}}" width="250" class="rounded">
             </div>
           </div>
         </div>

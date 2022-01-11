@@ -73,7 +73,7 @@
                             <label for="exampleFormControlFile1">Image</label>
                             <input type="file" name="img" class="form-control-file" id="exampleFormControlFile1">
                         </div>
-                          <img src="{{asset('images/users/'.$user->img)}}" width="75" class="rounded">
+                          <img src="{{Storage::disk('s3')->url($user->img)}}" width="75" class="rounded">
                     </div>
                   </div>
                   <div class="form-group">

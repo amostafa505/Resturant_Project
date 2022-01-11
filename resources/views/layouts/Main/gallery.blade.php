@@ -34,13 +34,15 @@
                         <div class="col-sm-6 col-md-4 col-lg-4 {{$product->foodmenu->menu_name}}">
                             <div class="portfolio-item">
                                 <div class="hover-bg">
+                                    <a href="{{'https://restaurant-project.s3.amazonaws.com/'.$product->productImages[0]->name}}" title="{{$product->name}}" data-lightbox-gallery="gallery1">
                                     {{-- <a href="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" title="{{$product->name}}" data-lightbox-gallery="gallery1"> --}}
-                                        <a href="{{asset('/images/products/'.$product->productImages[0]->name)}}" title="{{$product->name}}" data-lightbox-gallery="gallery1">
+                                        {{-- <a href="{{asset('/images/products/'.$product->productImages[0]->name)}}" title="{{$product->name}}" data-lightbox-gallery="gallery1"> --}}
                                         <div class="hover-text">
                                             <h4>{{$product->name}}</h4>
                                         </div>
-                                        {{-- <img src="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" class="img-responsive" alt="Project Title"> </a> --}}
-                                        <img src="{{asset('/images/products/'.$product->productImages[0]->name)}}" class="img-responsive" alt="Project Title"> </a>
+                                        <img src="{{'https://restaurant-project.s3.amazonaws.com/'.$product->productImages[0]->name}}"  class="img-responsive" title="{{$product->name}}" alt="Dish Name">></a>
+                                        {{-- <img src="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" class="img-responsive" title="{{$product->name}} alt="Dish Name"> </a> --}}
+                                        {{-- <img src="{{asset('/images/products/'.$product->productImages[0]->name)}}" class="img-responsive" title="{{$product->name}} alt="Dish Name"> </a> --}}
                                 </div>
                             </div>
                         </div>

@@ -14,7 +14,7 @@
                     @foreach($chefs as $chef)
                         <div class="col-md-4 team">
                             <div class="thumbnail">
-                                <div class="team-img"><img src="{{asset('images/chefs/'.$chef->img)}}" alt="..."></div>
+                                <div class="team-img"><img src="{{Storage::disk('s3')->url($chef->img)}}" alt="..."></div>
                                 <div class="caption">
                                     <h3>{{$chef->name}}</h3>
                                     <p>{{$chef->brief}}</p>

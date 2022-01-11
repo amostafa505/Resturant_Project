@@ -5,7 +5,7 @@
         <div class="col-12">
         <div class="card">
             <div class="card-header">
-            <h3 class="card-title">Show User</h3>
+            <h3 class="card-title">Show Chef</h3>
 
             <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -37,7 +37,7 @@
                             <th scope="row">{{$id++}}</th>
                             <td>{{$row->name}}</td>
                             <td>{{$row->brief}}</td>
-                            <td><img src="{{asset('images/chefs/'.$row->img)}}" width="75" class="rounded"></td>
+                            <td><img src="{{Storage::disk('s3')->url($row->img)}}" width="50px"  class="rounded"></td>
                             <td>
                                 <div class="row">
                                 <a href="{{route('chefs.edit',$row->id)}}" class="btn btn-info">Edit <i class="bi bi-pencil-square"></i></a>

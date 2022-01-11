@@ -11,9 +11,10 @@
     <!-- Favicons
     ================================================== -->
     {{-- <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon"> --}}
-    <link rel="apple-touch-icon" href="{{asset('img/apple-touch-icon.png')}}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('img/apple-touch-icon-72x72.png')}}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('img/apple-touch-icon-114x114.png')}}">
+    <link rel="icon" sizes="114x114" href="{{asset('img/apple-touch-icon.png')}}">
+    @production
+    <link rel="icon" href="{{secure_asset('img/apple-touch-icon.png')}}">
+    @endproduction
 
     {{-- Toastr Css --}}
     @toastr_css
@@ -21,11 +22,11 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
     @production
-    <link rel="stylesheet" href="{{ secure_asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('css/bootstrap.css')}}">
     @endproduction
     <link rel="stylesheet" type="text/css" href="{{asset('fonts/font-awesome/css/font-awesome.css')}}">
     @production
-    <link rel="stylesheet" href="{{ secure_asset('fonts/font-awesome/css/font-awesome.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('fonts/font-awesome/css/font-awesome.css')}}">
     @endproduction
     <!-- Stylesheet
     ================================================== -->

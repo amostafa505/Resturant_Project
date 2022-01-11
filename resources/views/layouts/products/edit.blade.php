@@ -88,10 +88,14 @@
             </form>
             <div class="form text-center">
                 {{-- <img src="{{asset('images/products/'.$product->img)}}" width="500" class="rounded"> --}}
-                @foreach ($product->productimages as $image)  
-                {{-- <div class="product-image-thumb active"><img src="{{Storage::url('/images/products/'.$image->name)}}" alt="Product Image"></div> --}}
-                <div class="product-image-thumb active"><img src="{{asset('/images/products/'.$image->name)}}" alt="Dish Image"></div>
-              @endforeach
+                <div class="container">
+                  <div class="row">
+                      @foreach ($product->productimages as $image)  
+                      {{-- <div class="product-image-thumb active"><img src="{{Storage::url('/images/products/'.$image->name)}}" alt="Product Image"></div> --}}
+                              <div class="col-xs-6"><img src="{{'https://restaurant-project.s3.amazonaws.com/'.$image->name}}" width="250px" class="img-thumbnail" alt="Dish Image"></div>
+                      @endforeach
+                  </div>  
+                </div>   
             </div>
           </div>
         </div>

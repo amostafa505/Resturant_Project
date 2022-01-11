@@ -136,10 +136,9 @@ class ProductsController extends Controller
                 // $file->storeAs($destenationpath , $imgnewname, 'public');
                 
                 //saving images using the AWS s3 Bucket
-                // $file->storeAs($destenationpath ,$imgnewname, 's3');
                 $imgnewname = Storage::disk('s3')->put($destenationpath , $file);
-                // dd($imgnewname);
-                // $url = Storage::disk('s3')->url($path);
+
+                //assign the new name that created from the aws saving into my DB in array
                 $newname[] = $imgnewname;
             }
             foreach($newname as $image){
@@ -156,10 +155,14 @@ class ProductsController extends Controller
             // dd($data);
             foreach($data as $image){
                 productImage::destroy($image->id);
-                // if(file_exists(public_path() .  '/storage/images/products/' . $image->name)){
-                //     unlink(public_path() .  '/storage/images/products/' . $image->name);    
-                if(file_exists(public_path() .  '/images/products/' . $image->name)){
-                    unlink(public_path() .  '/images/products/' . $image->name);    
+                    
+                // if(file_exists(public_path() .  '/images/products/' . $image->name)){
+                //     unlink(public_path() .  '/images/products/' . $image->name);    
+                // }
+                if (Storage::disk('s3')->exists($image->name)) {
+                    // dd($image->name);
+                    // dd($image->name);
+                    Storage::disk('s3')->delete($image->name);
                 }
             }
             $this->saveImage($request , $request->id);
