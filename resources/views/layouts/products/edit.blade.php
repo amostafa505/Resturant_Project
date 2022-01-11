@@ -71,6 +71,10 @@
                   </select>
                 </div>
                 <div class="form-group">
+                  <label>Dish Description</label>
+                  <textarea class="form-control" name="description" value="{{$product->description}}" rows="3" placeholder="Enter The Product description here"></textarea>
+                </div>
+                <div class="form-group">
                   <label for="exampleFormControlSelect1">Select Menu</label>
                   <select class="form-control" name="menu_id" id="exampleFormControlSelect1">
                     @foreach($menu as $row)

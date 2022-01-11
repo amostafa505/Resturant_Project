@@ -60,7 +60,7 @@
                                         <div class="menu-item row" >
                                             <div class="menu-item-image col-xs-3">
                                                 {{-- {{dd($product->productImages)}} --}}
-                                                <img src="{{'https://restaurant-project.s3.amazonaws.com/'.$product->productImages[0]->name}}" class="" alt="">
+                                                <img src="{{Storage::disk('s3')->url($product->productImages[0]->name)}}" class="" alt="">
                                                 {{-- <img src="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" class="" alt=""> --}}
                                                 {{-- <img src="{{asset('/images/products/'.$product->productImages[0]->name)}}" class="" alt=""> --}}
                                             </div>

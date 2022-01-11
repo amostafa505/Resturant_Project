@@ -23,11 +23,11 @@
                   <div class="col-12 col-sm-6">
                     <h1 class="d-inline-block d-sm-none">{{$product->name}}</h1>
                     <div class="col-12">
-                      <img src="{{'https://restaurant-project.s3.amazonaws.com/'.$product->productImages[0]->name}}" class="product-image" alt="Product Image">
+                      <img src="{{Storage::disk('s3')->url($product->productImages[0]->name)}}" class="product-image" alt="Product Image">
                     </div>
                     <div class="col-12 product-image-thumbs">
                       @foreach ($product->productimages as $image)  
-                        <div class="product-image-thumb active"><img src="{{'https://restaurant-project.s3.amazonaws.com/'.$image->name}}" alt="Product Image"></div>
+                        <div class="product-image-thumb active"><img src="{{Storage::disk('s3')->url($image->name)}}" alt="Product Image"></div>
                       @endforeach
                     </div>
                   </div>

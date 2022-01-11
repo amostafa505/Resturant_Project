@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                   <label>Chef Brief</label>
-                  <textarea class="form-control" name="brief" rows="3" placeholder="Enter The Product description here"></textarea>
+                  <textarea class="form-control" name="brief" rows="3" value="{{$chef->brief}}" placeholder="Enter The Product description here"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Image</label>
