@@ -33,7 +33,7 @@ class ProductUpdate extends FormRequest
             'description'   => 'nullable|min:10|max:200',
             'status'        => 'required|in:pending,active,notactive',
             'discount'      => 'nullable|numeric',
-            'image_id'      => 'required',
+            'image_id'      => 'nullable',
             'image_id.*'    => 'mimes:jpeg,png,jpg,gif,svg',
         ];
     }

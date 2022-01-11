@@ -72,7 +72,7 @@
                 </div>
                 <div class="form-group">
                   <label>Dish Description</label>
-                  <textarea class="form-control" name="description" value="{{$product->description}}" rows="3" placeholder="Enter The Product description here"></textarea>
+                  <textarea class="form-control" name="description" value="{{$product->description}}" rows="3" placeholder="Enter The Product description here">{{$product->description}}</textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Select Menu</label>
@@ -96,7 +96,7 @@
                   <div class="row">
                       @foreach ($product->productimages as $image)  
                       {{-- <div class="product-image-thumb active"><img src="{{Storage::url('/images/products/'.$image->name)}}" alt="Product Image"></div> --}}
-                              <div class="col-xs-6"><img src="{{'https://restaurant-project.s3.amazonaws.com/'.$image->name}}" width="250px" class="img-thumbnail" alt="Dish Image"></div>
+                              <div class="col-xs-6"><img src="{{Storage::disk('s3')->url($image->name)}}" width="250px" class="img-thumbnail" alt="Dish Image"></div>
                       @endforeach
                   </div>  
                 </div>   
