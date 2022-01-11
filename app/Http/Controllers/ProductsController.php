@@ -114,8 +114,11 @@ class ProductsController extends Controller
         $product->delete($product);
         foreach($product->productImages as $image){
             // unlink(public_path() .  '/storage/images/products/' . $image->name);
-            unlink(public_path() .  '/images/products/' . $image->name);
+            // unlink(public_path() .  '/images/products/' . $image->name);
             // File::delete('/images/products/'.$image->name);
+            if (Storage::disk('s3')->exists($image->name)) {
+                Storage::disk('s3')->delete($image->name);
+            }
         }
         return response()->json(["status"=>"success" , "Message"=>"Deleted Succussfully"]);
     }
@@ -160,8 +163,6 @@ class ProductsController extends Controller
                 //     unlink(public_path() .  '/images/products/' . $image->name);    
                 // }
                 if (Storage::disk('s3')->exists($image->name)) {
-                    // dd($image->name);
-                    // dd($image->name);
                     Storage::disk('s3')->delete($image->name);
                 }
             }

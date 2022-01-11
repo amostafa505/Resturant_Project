@@ -45,7 +45,7 @@ class UserProfileController extends Controller
             $file = $request->file('img');
             $exten = $file->getClientOriginalExtension();
             $newname = uniqid(). '.' .$exten;
-            $destenationpath = 'images/users/';
+            $destenationpath = 'images/users';
             $newname = Storage::disk('s3')->put($destenationpath , $file);
             // $file->move($destenationpath , $newname);
             return $newname;

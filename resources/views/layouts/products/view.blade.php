@@ -22,7 +22,7 @@
 
     <!-- Main content -->
     <section class="content">
-      @if($product->productimages)
+      @if($product->productImages)
       <!-- Default box -->
       <div class="card card-solid">
         <div class="card-body">
