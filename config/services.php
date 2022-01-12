@@ -38,6 +38,6 @@ return [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         // 'redirect' => 'http://localhost/Sessions/Laravel%20Projects/Resturant_Project/public/login/facebook/callback', //local
-        'redirect' => 'https://resturant-laravel.herokuapp.com/public/login/facebook/callback', //Heroku
+        'redirect' => 'https://resturant-laravel.herokuapp.com/login/facebook/callback', //Heroku
     ],
 ];
