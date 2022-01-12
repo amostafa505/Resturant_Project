@@ -40,7 +40,7 @@
                                         <div class="hover-text">
                                             <h4>{{$product->name}}</h4>
                                         </div>
-                                        <img src="{{Storage::disk('s3')->url($product->productImages[0]->name)}}"  class="img-responsive" title="{{$product->name}}" alt="Dish Name">></a>
+                                        <img src="{{Storage::disk('s3')->url($product->productImages[0]->name)}}"  class="img-responsive" title="{{$product->name}}" alt="Dish Name"></a>
                                         {{-- <img src="{{Storage::url('/images/products/'.$product->productImages[0]->name)}}" class="img-responsive" title="{{$product->name}} alt="Dish Name"> </a> --}}
                                         {{-- <img src="{{asset('/images/products/'.$product->productImages[0]->name)}}" class="img-responsive" title="{{$product->name}} alt="Dish Name"> </a> --}}
                                 </div>
