@@ -37,7 +37,7 @@ class FacebookSocialiteController extends Controller
  
             Auth::login($newUser);
   
-            return back();
+            return redirect()->to('https://resturant-laravel.herokuapp.com/');
         }
     }
 }

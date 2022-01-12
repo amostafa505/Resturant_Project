@@ -74,7 +74,7 @@
                           <div class="card">
                             <div class="card-body">
                               <div class="d-flex flex-column align-items-center text-center">
-                                <img src="@if($profile->img){{Storage::->disk('s3')->url($profile->img)}}@else https://bootdey.com/img/Content/avatar/avatar7.png @endif" alt="Admin" class="rounded-circle" width="150">
+                                <img src="@if($profile->img){{Storage::disk('s3')->url($profile->img)}}@else https://bootdey.com/img/Content/avatar/avatar7.png @endif" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                   <h4>{{$profile->name}}</h4>
                                   <p class="text-secondary mb-1">{{$profile->email}}</p>
