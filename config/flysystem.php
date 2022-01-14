@@ -5,8 +5,8 @@ use League\Flysystem\Filesystem;
 
 $client = new S3Client([
     'credentials' => [
-        'key' => env('AWS_ACCESS_KEY_ID'),
-        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'key'    => 'AKIARH33NGKZI7WDX4HK',
+        'secret' => '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',
     ],
     'region' => 'us-east-1',
     'version' => 'latest',
