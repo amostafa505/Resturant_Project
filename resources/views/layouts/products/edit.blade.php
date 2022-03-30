@@ -84,25 +84,68 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Image</label>
-                    <input type="file" name="image_id[]" multiple class="form-control-file" id="exampleFormControlFile1">
+                    <input type="file" name="image_id[]" id="images" multiple class="form-control-file">
                 </div>
+                <div class="col-md-12">
+                    <div class="mt-1 text-center">
+                      {{-- <img src="{{asset('images/products/'.$product->img)}}" width="500" class="rounded"> --}}
+                      <div class="col-xs-6 m-2" id="oldimg">
+                        @foreach ($product->productimages as $image)  
+                        {{-- <div class="product-image-thumb active"><img src="{{Storage::url('/images/products/'.$image->name)}}" alt="Product Image"></div> --}}
+                                <img src="{{Storage::disk('s3')->url($image->name)}}" width="250px" class="img-thumbnail" alt="Dish Image">
+                        @endforeach
+                      </div>
+                        <div class="images-preview-div">
+
+                        </div> 
+                    </div>
+                  </div> 
+                  {{-- <div class="col-md-12">
+                    <div class="mt-1 text-center">
+                      <div class="images-preview-div">
+                        
+                      </div>
+                    </div>  
+                  </div> --}}
+
+
                 <button type="submit" class="btn btn-success">
                     <i class="bi bi-reply-all-fill"></i> Submit
                  </button>
             </form>
-            <div class="form text-center">
-                {{-- <img src="{{asset('images/products/'.$product->img)}}" width="500" class="rounded"> --}}
-                <div class="container">
-                  <div class="row">
-                      @foreach ($product->productimages as $image)  
-                      {{-- <div class="product-image-thumb active"><img src="{{Storage::url('/images/products/'.$image->name)}}" alt="Product Image"></div> --}}
-                              <div class="col-xs-6"><img src="{{Storage::disk('s3')->url($image->name)}}" width="250px" class="img-thumbnail" alt="Dish Image"></div>
-                      @endforeach
-                  </div>  
-                </div>   
-            </div>
+
           </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('jsScript')
+    <script >
+      // View the images that user choose directly
+      $(function() {
+      var previewImages = function(input, imgPreviewPlaceholder) {
+        if (input.files) {
+          //here remove the old imgs from the view to show the new selected ones
+            $('#oldimg').remove();
+            //here checking if this div has Images or not if has an image it removes it and but the new one 
+            //if not it append the image 
+            if($(".images-preview-div:has(img)").length > 0){
+                  $('.img-thumbnail').remove();
+            }//end if
+                var filesAmount = input.files.length;
+                for(i = 0; i < filesAmount; i++){
+                  var reader = new FileReader();
+                  reader.onload = function(event) { 
+                    $($.parseHTML('<img class="img-thumbnail w-25 h-25 m-2">')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+              }//end function onload
+            reader.readAsDataURL(input.files[i]);
+          }//end for
+        }//end IF
+        };
+        $('#images').on('change', function() {
+          previewImages(this, 'div.images-preview-div');
+        });
+      });
+      </script>
 @endsection

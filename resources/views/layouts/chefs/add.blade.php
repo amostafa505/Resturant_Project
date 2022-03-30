@@ -54,7 +54,13 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Image</label>
-                    <input type="file" name="img" class="form-control-file" id="exampleFormControlFile1">
+                    <input type="file" name="img" class="form-control-file" id="image">
+                </div>
+                <div class="col-md-12">
+                  <div class="mt-1 text-center">
+                    <div class="images-preview-div">
+                    </div>
+                  </div>  
                 </div>
                 <button type="submit" class="btn btn-success">
                     <i class="bi bi-reply-all-fill"></i> Submit
@@ -64,4 +70,34 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('jsScript')
+<script >
+  // View the images that user choose directly
+  $(function() {
+  var previewImages = function(input, imgPreviewPlaceholder) {
+    if (input.files) {
+      //here remove the old imgs from the view to show the new selected ones
+        $('#oldimg').remove();
+        //here checking if this div has Images or not if has an image it removes it and but the new one 
+        //if not it append the image 
+        if($(".images-preview-div:has(img)").length > 0){
+              $('.img-thumbnail').remove();
+        }//end if
+            var filesAmount = input.files.length;
+            for(i = 0; i < filesAmount; i++){
+              var reader = new FileReader();
+              reader.onload = function(event) { 
+                $($.parseHTML('<img class="img-thumbnail w-25 h-25 m-2">')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+          }//end function onload
+        reader.readAsDataURL(input.files[i]);
+      }//end for
+    }//end IF
+    };
+    $('#image').on('change', function() {
+      previewImages(this, 'div.images-preview-div');
+    });
+  });
+  </script>
 @endsection

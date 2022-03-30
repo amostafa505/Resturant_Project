@@ -20,7 +20,7 @@
             </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0">
+            <div class="card-body table-responsive">
             <table class="table table-hover text-nowrap">
                 <thead>
                 <tr>

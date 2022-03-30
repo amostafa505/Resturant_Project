@@ -66,14 +66,6 @@
                     <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                   </div>
                   <div class="form-group">
-                    <div class="input-group">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Image</label>
-                            <input type="file" name="img" class="form-control-file" id="exampleFormControlFile1">
-                          </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
                     <div class="custom-control custom-radio">
                       <input class="custom-control-input" type="radio" id="customRadio1" name="is_admin" value="1">
                       <label for="customRadio1" class="custom-control-label">Admin</label>
@@ -81,6 +73,21 @@
                     <div class="custom-control custom-radio">
                       <input class="custom-control-input" type="radio" id="customRadio2" name="is_admin" value="0" checked>
                       <label for="customRadio2" class="custom-control-label">User</label>
+                    </div>
+                    
+                    <div class="form-group">
+                      <div class="input-group">
+                          <div class="form-group">
+                              <label for="exampleFormControlFile1">Image</label>
+                              <input type="file" name="img" class="form-control-file" id="image">
+                            </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="mt-1 text-center">
+                        <div class="images-preview-div">
+                        </div>
+                      </div>  
                     </div>
                     <div class="card-footer">
                       <button type="submit" class="btn btn-primary">Submit</button>
@@ -91,4 +98,35 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('jsScript')
+    <script >
+      // View the images that user choose directly
+      $(function() {
+      var previewImages = function(input, imgPreviewPlaceholder) {
+        if (input.files) {
+            $('#oldimg').remove();
+          var filesAmount = input.files.length;
+          for(i = 0; i < filesAmount; i++){
+            var reader = new FileReader();
+              reader.onload = function(event) {
+                //here checking if this div has Images or not if has an image it removes it and but the new one 
+                //if not it append the image  
+                if($(".images-preview-div:has(img)").length > 0){
+                  $('.img-thumbnail').remove();
+                  $($.parseHTML('<img class="img-thumbnail w-25 h-25 m-2">')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                }else{
+                  $($.parseHTML('<img class="img-thumbnail w-25 h-25 m-2">')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                }
+              }
+            reader.readAsDataURL(input.files[i]);
+          }
+        }
+        };
+        $('#image').on('change', function() {
+          previewImages(this, 'div.images-preview-div');
+        });
+      });
+      </script>
 @endsection
